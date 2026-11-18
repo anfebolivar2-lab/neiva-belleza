@@ -217,5 +217,5 @@ VISTAS.galeria = async (vista) => {
   });
 };
 function urlFotoGaleria(ruta) {
-  return /^(https?:|img\/)/.test(ruta) ? ruta : `${SUPABASE.url}/storage/v1/object/public/galeria/${encodeURI(ruta)}`;
+  return /^(https?:|data:image\/|img\/)/.test(ruta) ? ruta : `img/${encodeURI(ruta)}`;
 }

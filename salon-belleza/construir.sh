@@ -6,5 +6,5 @@ set -e
 COMMIT=${1:-main}
 rm -rf public && mkdir -p public
 curl -sSfL "https://codeload.github.com/anfebolivar2-lab/neiva-belleza/tar.gz/$COMMIT" | tar xz --strip-components=2 -C public --wildcards '*/salon-belleza/*'
-rm -rf public/supabase public/README.md public/netlify.toml public/.vercelignore public/vercel.json public/construir.sh
+rm -rf public/supabase public/firebase public/README.md public/netlify.toml public/.vercelignore public/vercel.json public/construir.sh
 ls public

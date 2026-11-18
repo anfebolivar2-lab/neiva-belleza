@@ -171,6 +171,11 @@ async function entrar() {
     const [perfil] = await db.leer('perfiles', `select=*&user_id=eq.${sesion.usuario.sub}`);
     if (!perfil) { mostrarPantalla('pantalla-pendiente'); return; }
     sesion.perfil = perfil;
+    // Base de datos nueva y vacía: la dueña carga el catálogo inicial una sola vez
+    if (perfil.rol === 'duena' && typeof DATOS_INICIALES !== 'undefined') {
+      const cargados = await cargarDatosIniciales().catch(() => 0);
+      if (cargados) toast('Cargué el catálogo inicial del salón. Puedes cambiarlo en Servicios y precios.');
+    }
     await cargarCatalogo().catch(() => {});
     const [plantillas] = await db.leer('config', 'select=valor&clave=eq.plantillas').catch(() => []);
     if (plantillas) PLANTILLAS = { ...PLANTILLAS_BASE, ...plantillas.valor };
@@ -1311,7 +1316,7 @@ VISTAS.catalogo = async (vista) => {
     const tr = input.closest('tr');
     try {
       const ruta = await intentar(() => subirArchivo('galeria', archivo));
-      const url = `${SUPABASE.url}/storage/v1/object/public/galeria/${ruta}`;
+      const url = ruta; // la foto ya viene reducida y lista para guardar
       await intentar(() => db.actualizar(tr.dataset.tabla, `id=eq.${encodeURIComponent(tr.dataset.id)}`, { foto: url }), 'Foto actualizada en la página.');
       tr.querySelector('.foto-catalogo img').src = url;
       await cargarCatalogo().catch(() => {});
@@ -1338,7 +1343,7 @@ VISTAS.config = async (vista) => {
   const plantillas = { ...PLANTILLAS_BASE, ...valor('plantillas', {}) };
   const fidelidad = valor('fidelidad', { sellosParaPremio: 10 });
   const festivos = await db.leer('festivos', `select=*&fecha=gte.${hoyCol()}&order=fecha`);
-  const servidor = await funcionServidor('/estado', null, 'GET').catch(() => null); // llaves secretas guardadas en Supabase
+  const servidor = await funcionServidor('/estado', null, 'GET').catch(() => null);
   const estadoServidor = (k) => (servidor ? estadoInteg(servidor[k]) : '<span class="pendiente-conectar">Sin conexión para revisar</span>');
   const estadoInteg = (v) => v ? '<span class="conectado">Conectado</span>' : '<span class="pendiente-conectar">Pendiente de conectar</span>';
   const campo = (id, etiqueta, v, extra = '') => `<div class="campo"><label for="${id}">${etiqueta}</label><input id="${id}" value="${esc(v ?? '')}" ${extra}></div>`;
@@ -1360,11 +1365,11 @@ VISTAS.config = async (vista) => {
         <div class="campo"><label for="i-resena">Enlace para dejar reseña en Google ${estadoInteg(integ.googleReviewUrl)}</label><input id="i-resena" value="${esc(integ.googleReviewUrl)}" placeholder="https://g.page/r/..."></div>
         <label class="check ancho"><input type="checkbox" id="i-asistente" ${integ.asistenteActivo ? 'checked' : ''}> Mostrar el asistente virtual en la página (necesita la llave de Claude abajo)</label>
       </div><button class="btn btn-pequeno" data-guardar-integ>Guardar</button>
-      <h3 class="subtitulo-config">Servicios con llave secreta (se guardan en Supabase, nunca en la página)</h3>
-      <p class="nota-enlace">En Supabase: Project Settings → Edge Functions → Secrets. Agrega los nombres exactos de la derecha y recarga esta página.</p>
+      <h3 class="subtitulo-config">Servicios con llave secreta (necesitan un servidor)</h3>
+      <p class="nota-enlace">Estas conexiones guardan llaves secretas que no pueden ir dentro de la página. En Firebase necesitan Cloud Functions, que solo vienen en el plan Blaze (de pago). La función ya está escrita en <code>supabase/functions/integraciones</code> y se puede pasar a Cloud Functions cuando se active ese plan.</p>
       <div class="tabla-scroll"><table class="tabla"><tbody>
         <tr><td><strong>Wompi</strong><small>Pagos en línea con Nequi, PSE y tarjeta para tarjetas de regalo y pedidos. Cuenta en comercios.wompi.co</small></td><td>${estadoServidor('wompi')}</td>
-          <td><small>WOMPI_PUBLIC_KEY · WOMPI_INTEGRITY_SECRET · WOMPI_EVENTS_SECRET</small><small>URL de eventos en Wompi: <code>${esc(SUPABASE.url)}/functions/v1/integraciones/wompi/evento</code></small></td></tr>
+          <td><small>WOMPI_PUBLIC_KEY · WOMPI_INTEGRITY_SECRET · WOMPI_EVENTS_SECRET</small><small>Se activa con el plan Blaze de Firebase</small></td></tr>
         <tr><td><strong>WhatsApp Business API</strong><small>Recordatorios automáticos un día antes (plantilla aprobada por Meta con 4 variables: nombre, hora, profesional, enlace)</small></td><td>${estadoServidor('whatsapp')}</td>
           <td><small>WHATSAPP_TOKEN · WHATSAPP_PHONE_ID · (opcional) WHATSAPP_PLANTILLA</small></td></tr>
         <tr><td><strong>Asistente virtual (Claude)</strong><small>Responde dudas de clientas con los precios y horarios reales del salón</small></td><td>${estadoServidor('asistente')}</td>
