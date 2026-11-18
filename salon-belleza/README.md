@@ -6,8 +6,8 @@ Usa HTML, CSS y JavaScript sin librerías. La base de datos real está en **Supa
 ## 1. Publicar la página
 
 **Publicada en Vercel:** <https://neiva-belleza.vercel.app> (proyecto `neiva-belleza` en la cuenta de Vercel de la dueña).
-- Vercel ejecuta `construir.sh`, que descarga esta carpeta desde GitHub en un commit fijo y la publica.
-- Para subir una versión nueva, vuelve a desplegar con el commit nuevo en `construir.sh`.
+- Vercel ejecuta `construir.sh`, que descarga esta carpeta del repositorio <https://github.com/anfebolivar2-lab/neiva-belleza> y la publica.
+- Para subir una versión nueva, vuelve a desplegar en Vercel: toma lo último de la rama `main`.
 - También puedes conectar el repositorio en Vercel (opción B) para que cada cambio se publique solo.
 
 ### Opción A: Netlify Drop (sin instalar nada)
