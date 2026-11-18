@@ -19,35 +19,73 @@
 
   <!-- ===== INGRESO ===== -->
   <section class="pantalla-acceso" id="pantalla-login" hidden>
-    <div class="tarjeta-acceso">
-      <p class="logo-texto">Neiva <i>·</i> Belleza<small>Panel del salón</small></p>
-      <h1 id="titulo-acceso">Ingresar</h1>
-      <form id="form-acceso" novalidate>
-        <div class="campo" id="campo-nombre" hidden><label for="acceso-nombre">Tu nombre</label>
-          <input id="acceso-nombre" autocomplete="name" maxlength="60"></div>
-        <div class="campo"><label for="acceso-email">Correo</label>
-          <input id="acceso-email" type="email" autocomplete="username" required></div>
-        <div class="campo" id="campo-clave"><label for="acceso-clave">Contraseña</label>
-          <input id="acceso-clave" type="password" autocomplete="current-password" minlength="8" required></div>
-        <p class="error-general" id="error-acceso" role="alert" hidden></p>
-        <p class="ok-aviso" id="aviso-acceso" role="status" hidden></p>
-        <button class="btn btn-ancho" id="boton-acceso" type="submit">Entrar</button>
-      </form>
-      <div class="enlaces-acceso">
-        <button type="button" class="enlace-boton" data-modo="registro">Soy nueva en el equipo: crear cuenta</button>
-        <button type="button" class="enlace-boton" data-modo="recuperar">Olvidé mi contraseña</button>
-        <button type="button" class="enlace-boton" data-modo="login" hidden>Ya tengo cuenta: ingresar</button>
+    <header class="barra-acceso">
+      <a href="index.html" class="barra-logo" aria-label="Página del salón"><img src="img/icono.svg" alt="" width="44" height="44"></a>
+      <div class="barra-acciones">
+        <span class="pastilla-acceso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Iniciar sesión</span>
+        <a href="index.html" class="enlace">Ver la página</a>
       </div>
-      <a class="enlace volver" href="index.html">← Volver a la página del salón</a>
+    </header>
+    <div class="tarjeta-acceso">
+      <div class="cabecera-acceso">
+        <span class="marco-logo"><img src="img/icono.svg" alt="" width="120" height="120"></span>
+        <p class="nombre-acceso">Neiva · Belleza</p>
+        <p class="lema-acceso">Salón &amp; Spa · Neiva, Huila</p>
+      </div>
+      <div class="cuerpo-acceso">
+        <h1 id="titulo-acceso">Iniciar sesión</h1>
+        <p class="subtitulo-acceso" id="subtitulo-acceso">Acceso para el equipo del salón.</p>
+        <form id="form-acceso" novalidate>
+          <div class="campo" id="campo-nombre" hidden><label for="acceso-nombre">Tu nombre</label>
+            <input id="acceso-nombre" autocomplete="name" maxlength="60" placeholder="Nombre y apellido"></div>
+          <div class="campo"><label for="acceso-email">Correo</label>
+            <input id="acceso-email" type="email" autocomplete="username" placeholder="nombre@correo.com" required></div>
+          <div class="campo" id="campo-clave"><label for="acceso-clave">Contraseña</label>
+            <div class="clave-con-ojo">
+              <input id="acceso-clave" type="password" autocomplete="current-password" minlength="8" placeholder="Tu contraseña" required>
+              <button type="button" class="ver-clave" data-ver-clave="acceso-clave" aria-label="Mostrar contraseña" aria-pressed="false" title="Mostrar contraseña">
+                <svg class="ojo-abierto" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="ojo-cerrado" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a10 10 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+              </button>
+            </div>
+          </div>
+          <p class="error-general" id="error-acceso" role="alert" hidden></p>
+          <p class="ok-aviso" id="aviso-acceso" role="status" hidden></p>
+          <button class="btn btn-ancho btn-acceso" id="boton-acceso" type="submit">Entrar</button>
+        </form>
+        <div class="enlaces-acceso">
+          <button type="button" class="enlace-boton" data-modo="recuperar">Olvidé mi contraseña</button>
+          <button type="button" class="enlace-boton" data-modo="registro">Soy nueva en el equipo: crear cuenta</button>
+          <button type="button" class="enlace-boton" data-modo="login" hidden>Ya tengo cuenta: ingresar</button>
+        </div>
+        <p class="separador-acceso"><span>O también</span></p>
+        <a class="opcion-acceso" href="index.html">
+          <span class="icono-opcion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1V19c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z"/><path d="M12 6.5V20"/></svg></span>
+          <span><strong>Ver la página del salón</strong><small>Servicios, precios y reservas para clientas</small></span>
+          <svg class="flecha-opcion" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a class="opcion-acceso" href="descargas/neiva-belleza.apk" download id="descargar-apk">
+          <span class="icono-opcion icono-android"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5z"/><path d="M7 6l-1.6-2.4M17 6l1.6-2.4"/><circle cx="9" cy="12.5" r=".6"/><circle cx="15" cy="12.5" r=".6"/></svg></span>
+          <span><strong>App para Android</strong><small>Descargar NeivaBelleza.apk (última versión)</small></span>
+          <svg class="flecha-opcion" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+        </a>
+      </div>
     </div>
+    <p class="pie-acceso">🔒 Acceso solo para el equipo autorizado de Neiva Belleza</p>
   </section>
 
   <section class="pantalla-acceso" id="pantalla-pendiente" hidden>
     <div class="tarjeta-acceso">
-      <p class="logo-texto">Neiva <i>·</i> Belleza<small>Panel del salón</small></p>
-      <h1>Tu cuenta espera aprobación</h1>
-      <p>La dueña del salón debe aprobar tu acceso y asignarte un rol. Avísale y vuelve a entrar en unos minutos.</p>
-      <button type="button" class="btn btn-borde" data-salir>Salir</button>
+      <div class="cabecera-acceso">
+        <span class="marco-logo"><img src="img/icono.svg" alt="" width="120" height="120"></span>
+        <p class="nombre-acceso">Neiva · Belleza</p>
+        <p class="lema-acceso">Panel del salón</p>
+      </div>
+      <div class="cuerpo-acceso">
+        <h1>Tu cuenta espera aprobación</h1>
+        <p class="subtitulo-acceso">La dueña del salón debe aprobar tu acceso y asignarte un rol. Avísale y vuelve a entrar en unos minutos.</p>
+        <button type="button" class="btn btn-borde btn-ancho" data-salir>Salir</button>
+      </div>
     </div>
   </section>
 

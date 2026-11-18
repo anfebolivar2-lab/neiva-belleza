@@ -109,8 +109,13 @@ function mostrarPantalla(id) {
   ['pantalla-login', 'pantalla-pendiente', 'app'].forEach((p) => { $(p).hidden = p !== id; });
 }
 function pintarAcceso() {
-  const titulos = { login: 'Ingresar', registro: 'Crear cuenta del equipo', recuperar: 'Recuperar contraseña' };
+  const titulos = { login: 'Iniciar sesión', registro: 'Crear cuenta del equipo', recuperar: 'Recuperar contraseña' };
   $('titulo-acceso').textContent = titulos[modoAcceso];
+  $('subtitulo-acceso').textContent = {
+    login: 'Acceso para el equipo del salón.',
+    registro: 'Crea tu cuenta con tu correo. La dueña la aprueba y te asigna un rol.',
+    recuperar: 'Escribe tu correo y te enviamos un enlace para crear una contraseña nueva.',
+  }[modoAcceso];
   $('campo-nombre').hidden = modoAcceso !== 'registro';
   $('campo-clave').hidden = modoAcceso === 'recuperar';
   $('acceso-clave').autocomplete = modoAcceso === 'registro' ? 'new-password' : 'current-password';
@@ -155,6 +160,18 @@ $('form-acceso').addEventListener('submit', async (e) => {
   }
 });
 document.addEventListener('click', (e) => { if (e.target.closest('[data-salir]')) salir(); });
+// Ver u ocultar la contraseña mientras se escribe
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ver-clave]');
+  if (!b) return;
+  const campo = $(b.dataset.verClave);
+  const ver = campo.type === 'password';
+  campo.type = ver ? 'text' : 'password';
+  b.setAttribute('aria-pressed', String(ver));
+  b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  b.title = b.getAttribute('aria-label');
+  campo.focus();
+});
 
 async function salir() {
   clearInterval(vigilante);
