@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const DB = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixture-db.json'), 'utf8'));
-const BASE = 'https://zhnwkyjoyixriasoxirf.supabase.co';
+const BASE = 'https://xctqgizrmhzddtrvlnjh.supabase.co';
 
 const colombia = (d) => new Date(d.getTime() - 5 * 3600e3);
 const fechaCol = (d) => colombia(d).toISOString().slice(0, 10);

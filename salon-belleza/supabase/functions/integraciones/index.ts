@@ -110,7 +110,7 @@ async function whatsappRecordatorios(req: Request) {
     .select('id, inicio, token, profesional_id, clientas(nombre, telefono), profesionales(nombre)')
     .gte('inicio', desde).lt('inicio', hasta).in('estado', ['pendiente', 'confirmada']).eq('recordatorio_enviado', false);
   const plantilla = env('WHATSAPP_PLANTILLA') || 'recordatorio_cita';
-  const sitio = env('SITIO_URL') || 'https://neiva-belleza.netlify.app';
+  const sitio = env('SITIO_URL') || 'https://neiva-belleza.vercel.app';
   let enviados = 0;
   const fallidos: string[] = [];
   for (const c of citas ?? []) {

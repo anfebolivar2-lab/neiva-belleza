@@ -617,7 +617,6 @@ begin
   if lower(new.email) = 'anfebolivar@gmail.com' then
     if new.email_confirmed_at is not null then
       insert into public.perfiles (user_id, nombre, rol) values (new.id, nombre, 'duena') on conflict (user_id) do nothing;
-      delete from public.solicitudes_acceso where user_id = new.id;
     end if;
     return new;
   end if;

@@ -10,7 +10,7 @@ let filtroGaleria = 'todas';
 
 function urlFoto(ruta) {
   if (!ruta) return '';
-  return escaparHTML(/^(https?:|data:image\/|img\/)/.test(ruta) ? ruta : `img/${encodeURI(ruta)}`);
+  return escaparHTML(/^(https?:|img\/)/.test(ruta) ? ruta : `${SUPABASE.url}/storage/v1/object/public/galeria/${encodeURI(ruta)}`);
 }
 
 function pintarGaleria() {

@@ -1,7 +1,7 @@
 // Simulador del panel: imita Supabase (auth + REST con filtros + funciones) en memoria.
 const fs = require('fs');
 const path = require('path');
-const BASE = 'https://zhnwkyjoyixriasoxirf.supabase.co';
+const BASE = 'https://xctqgizrmhzddtrvlnjh.supabase.co';
 const { sumarDias, fechaCol } = require('./simulador');
 
 const iso = (fecha, hhmm) => new Date(`${fecha}T${hhmm}:00-05:00`).toISOString();

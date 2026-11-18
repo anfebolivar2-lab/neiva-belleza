@@ -1,7 +1,7 @@
 // Service worker: guarda la página para abrir rápido y sin señal.
 // Nunca guarda datos de la base de datos (citas, horarios): esos siempre se piden en vivo.
-const VERSION = 'neiva-belleza-v2';
-const ARCHIVOS = ['./', 'index.html', 'cita.html', 'terminos.html', 'privacidad.html', 'styles.css', 'api.js', 'datos.js', 'script.js', 'extras.js', 'cita.js', 'datos-iniciales.js',
+const VERSION = 'neiva-belleza-v3';
+const ARCHIVOS = ['./', 'index.html', 'cita.html', 'terminos.html', 'privacidad.html', 'styles.css', 'api.js', 'datos.js', 'script.js', 'extras.js', 'cita.js',
   'img/icono.svg', 'img/portada-mano.jpg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {

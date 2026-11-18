@@ -91,8 +91,8 @@ const ok = (cond, texto) => console.log((cond ? '✔ ' : '✘ ') + texto) || (!c
   await p3.waitForFunction(() => ESTADO_CONEXION.cargado);
   await p3.click('[data-accion="repetir"]'); await p3.click('[data-accion="primer-cupo"]');
   await p3.click('#btn-siguiente'); await p3.click('#btn-siguiente');
-  await p3.unroute('https://zhnwkyjoyixriasoxirf.supabase.co/**');
-  await p3.route('https://zhnwkyjoyixriasoxirf.supabase.co/**', (r) => r.abort('internetdisconnected'));
+  await p3.unroute('https://xctqgizrmhzddtrvlnjh.supabase.co/**');
+  await p3.route('https://xctqgizrmhzddtrvlnjh.supabase.co/**', (r) => r.abort('internetdisconnected'));
   await p3.click('#btn-siguiente');
   await p3.waitForSelector('text=Enviar por WhatsApp');
   ok(true, 'sin conexión → ofrece enviar la solicitud por WhatsApp');
