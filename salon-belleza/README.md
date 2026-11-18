@@ -73,7 +73,22 @@ Usan Playwright con un simulador de Supabase, así que no tocan la base real. La
 
 Las funciones de la base de datos también se probaron en Supabase dentro de una transacción que se deshace, así que no dejan datos de prueba.
 
-## 6. La base de datos
+## 6. App para Android
+- **Descarga:** `descargas/neiva-belleza.apk`. Se baja desde la pantalla de ingreso del panel y desde el pie de la página.
+- **Qué es:** una app de verdad (Trusted Web Activity) que abre `https://neiva-belleza.vercel.app` a pantalla completa, con el ícono del salón.
+  - Como la app muestra la página publicada, cualquier cambio en la página llega solo a la app, sin reinstalar.
+  - Requisitos: Android 7 o más nuevo y Google Chrome instalado.
+- **Pantalla completa:** `.well-known/assetlinks.json` le dice a Android que la app y la página son del mismo dueño, para que no salga la barra de direcciones. Si se cambia la llave de firma, hay que actualizar la huella en ese archivo.
+- **Llave de firma:** `neiva-belleza.keystore` y su contraseña **no** están en el repositorio. Las guarda la dueña. Sin esa llave no se puede publicar una versión nueva que se instale encima de la anterior.
+- **Para armar una versión nueva:**
+  1. En `app-android/construir-apk.js` sube `VERSION` en 1.
+  2. Con el Android SDK y Java instalados, corre:
+     ```bash
+     ANDROID_HOME=... LLAVE=ruta/neiva-belleza.keystore CLAVE_FIRMA=... node app-android/construir-apk.js
+     ```
+- **Para Google Play:** usa la misma llave y el mismo paquete (`co.neivabelleza.app`).
+
+## 7. La base de datos
 - **Proyecto en Supabase:** `neiva-belleza` (`xctqgizrmhzddtrvlnjh`).
 - **Para reconstruirla desde cero:** en **SQL Editor** ejecuta en orden los archivos de `supabase/migrations/`:
   - `0001_tablas.sql`: tablas y reglas de acceso;

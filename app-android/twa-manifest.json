@@ -1,0 +1,54 @@
+{
+  "packageId": "co.neivabelleza.app",
+  "host": "neiva-belleza.vercel.app",
+  "name": "Neiva Belleza · Salón & Spa",
+  "launcherName": "Neiva Belleza",
+  "display": "standalone",
+  "themeColor": "#4B2F2C",
+  "themeColorDark": "#4B2F2C",
+  "navigationColor": "#4B2F2C",
+  "navigationColorDark": "#4B2F2C",
+  "navigationDividerColor": "#4B2F2C",
+  "navigationDividerColorDark": "#4B2F2C",
+  "backgroundColor": "#FAF5F1",
+  "enableNotifications": false,
+  "startUrl": "/index.html?origen=app",
+  "iconUrl": "https://raw.githubusercontent.com/anfebolivar2-lab/neiva-belleza/main/salon-belleza/img/icono-512.png",
+  "maskableIconUrl": "https://raw.githubusercontent.com/anfebolivar2-lab/neiva-belleza/main/salon-belleza/img/icono-maskable-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/tmp/claude-0/-home-user/d3c0c3ab-0303-595c-b83e-bebf36ceb38b/scratchpad/android/neiva-belleza.keystore",
+    "alias": "neivabelleza"
+  },
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Reservar",
+      "shortName": "Reservar",
+      "url": "/index.html?origen=app#reservar",
+      "chosenIconUrl": "https://raw.githubusercontent.com/anfebolivar2-lab/neiva-belleza/main/salon-belleza/img/icono-192.png"
+    },
+    {
+      "name": "Panel del salón",
+      "shortName": "Panel",
+      "url": "/admin.html",
+      "chosenIconUrl": "https://raw.githubusercontent.com/anfebolivar2-lab/neiva-belleza/main/salon-belleza/img/icono-192.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-core",
+  "webManifestUrl": "https://neiva-belleza.vercel.app/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "minSdkVersion": 24,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "displayOverride": []
+}

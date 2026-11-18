@@ -614,7 +614,7 @@ create function public._cuenta_nueva() returns trigger
 language plpgsql security definer set search_path = '' as $$
 declare nombre text := coalesce(nullif(btrim(new.raw_user_meta_data ->> 'nombre'), ''), split_part(new.email, '@', 1));
 begin
-  if lower(new.email) = 'anfebolivar@gmail.com' then
+  if lower(new.email) in ('anfebolivar@gmail.com', 'anfebolivar2@gmail.com') then
     if new.email_confirmed_at is not null then
       insert into public.perfiles (user_id, nombre, rol) values (new.id, nombre, 'duena') on conflict (user_id) do nothing;
     end if;

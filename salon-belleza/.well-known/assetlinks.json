@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "co.neivabelleza.app",
+    "sha256_cert_fingerprints": ["94:1B:5C:9C:28:49:AF:AE:40:66:3B:32:AA:82:0D:29:B0:B1:1C:33:B5:8C:6F:C0:15:04:E6:E4:02:A6:5B:79"]
+  }
+}]

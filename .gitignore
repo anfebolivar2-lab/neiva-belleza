@@ -1,2 +1,6 @@
 .netlify
 publicar/
+
+# App de Android: el proyecto generado y la llave de firma no se suben
+app-android/proyecto/
+*.keystore
